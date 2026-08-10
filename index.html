@@ -1,5 +1,507 @@
 <!DOCTYPE html>
-<html>
-<head><title>Benim Sitem</title></head>
-<body><h1>Merhaba Dünya</h1></body>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Adem Şimşek — CV</title>
+<meta name="description" content="Dr. Adem Şimşek — Assistant Professor, Information Security Consultant, Founder of ITSAFE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f8fa;
+    --surface:#ffffff;
+    --text:#1b2330;
+    --text-soft:#5b6472;
+    --text-faint:#8a93a1;
+    --accent:#1f4e79;
+    --accent-2:#3b7dc4;
+    --accent-soft:#e8f0fa;
+    --border:#e4e7ec;
+    --shadow:0 1px 2px rgba(16,24,40,.04),0 4px 16px rgba(16,24,40,.06);
+    --radius:14px;
+  }
+  :root[data-theme="dark"]{
+    --bg:#0f1520;
+    --surface:#161f2e;
+    --text:#e8ecf2;
+    --text-soft:#a7b0bf;
+    --text-faint:#6b7585;
+    --accent:#6fa8dc;
+    --accent-2:#8fbce8;
+    --accent-soft:#1b2a3d;
+    --border:#25324530;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0f1520; --surface:#161f2e; --text:#e8ecf2; --text-soft:#a7b0bf;
+      --text-faint:#6b7585; --accent:#6fa8dc; --accent-2:#8fbce8; --accent-soft:#1b2a3d;
+      --border:#25324530; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    transition:background .3s ease, color .3s ease;
+  }
+  a{color:var(--accent-2); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  .wrap{max-width:880px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- Top nav ---------- */
+  .topnav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(10px);
+    background:color-mix(in srgb, var(--bg) 80%, transparent);
+    border-bottom:1px solid var(--border);
+  }
+  .topnav-inner{
+    max-width:880px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .brand{font-weight:700; font-size:15px; letter-spacing:.2px; white-space:nowrap;}
+  .navlinks{display:flex; gap:22px; flex-wrap:wrap;}
+  .navlinks a{color:var(--text-soft); font-size:13.5px; font-weight:500;}
+  .navlinks a:hover{color:var(--accent-2); text-decoration:none;}
+  .nav-actions{display:flex; align-items:center; gap:10px;}
+  .theme-toggle{
+    border:1px solid var(--border); background:var(--surface); color:var(--text);
+    width:34px; height:34px; border-radius:50%; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; font-size:15px;
+  }
+  .cv-btn{
+    background:var(--accent); color:#fff; padding:8px 16px; border-radius:999px;
+    font-size:13px; font-weight:600; white-space:nowrap;
+  }
+  .cv-btn:hover{background:var(--accent-2); text-decoration:none;}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:64px 0 40px; text-align:center;}
+  .avatar-ring{
+    width:104px; height:104px; margin:0 auto 22px;
+    border-radius:50%;
+    background:linear-gradient(135deg, var(--accent), var(--accent-2));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Source Serif 4', serif; font-size:36px; font-weight:700; color:#fff;
+    box-shadow:var(--shadow);
+  }
+  .hero h1{
+    font-family:'Source Serif 4', serif;
+    font-size:clamp(30px,5vw,44px);
+    font-weight:700; margin:0 0 8px; letter-spacing:-.5px;
+  }
+  .hero .role{color:var(--text-soft); font-size:16px; font-weight:500; margin:0 0 22px;}
+  .hero .role span{color:var(--text-faint); padding:0 6px;}
+  .contact-row{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:10px;
+  }
+  .pill{
+    display:inline-flex; align-items:center; gap:6px;
+    border:1px solid var(--border); background:var(--surface);
+    padding:7px 14px; border-radius:999px; font-size:13px; color:var(--text-soft);
+    box-shadow:var(--shadow);
+  }
+  .pill svg{width:14px; height:14px; flex:none; opacity:.8;}
+  .pill a{color:var(--text-soft);}
+  .pill a:hover{color:var(--accent-2);}
+
+  /* ---------- Sections ---------- */
+  section{padding:44px 0;}
+  section + section{border-top:1px solid var(--border);}
+  .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:26px;}
+  .section-head .num{
+    font-family:'Source Serif 4', serif; color:var(--accent-2); font-size:14px; font-weight:600;
+  }
+  .section-head h2{
+    font-family:'Source Serif 4', serif;
+    font-size:24px; font-weight:600; margin:0; letter-spacing:-.2px;
+  }
+  .lead{color:var(--text-soft); font-size:15.5px; max-width:70ch;}
+
+  /* ---------- Experience timeline ---------- */
+  .timeline{position:relative; margin-top:8px;}
+  .timeline::before{
+    content:""; position:absolute; left:7px; top:6px; bottom:6px; width:2px;
+    background:linear-gradient(var(--border), var(--border));
+  }
+  .tl-item{position:relative; padding:0 0 34px 34px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-dot{
+    position:absolute; left:0; top:4px; width:16px; height:16px; border-radius:50%;
+    background:var(--surface); border:3px solid var(--accent-2);
+  }
+  .job-head{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px 16px;}
+  .job-org{font-size:17px; font-weight:700;}
+  .job-date{
+    font-size:12.5px; font-weight:700; color:var(--accent-2);
+    background:var(--accent-soft); padding:3px 10px; border-radius:999px; white-space:nowrap;
+  }
+  .job-role{font-style:italic; color:var(--text-soft); font-size:14.5px; margin-top:2px;}
+  .job-meta{color:var(--text-faint); font-size:12.5px; margin-top:4px;}
+  .job-meta a{color:var(--text-faint);}
+  .job-body{margin-top:10px; font-size:14.5px; color:var(--text-soft);}
+  .job-body ul{margin:8px 0 0; padding-left:20px;}
+  .job-body li{margin-bottom:6px;}
+  .job-body li strong{color:var(--text);}
+
+  /* ---------- Education ---------- */
+  .edu-grid{display:grid; gap:16px;}
+  .edu-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:18px 20px; box-shadow:var(--shadow);
+    display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .edu-card h3{margin:0 0 4px; font-size:15.5px; font-weight:700;}
+  .edu-card .school{color:var(--text-soft); font-size:13.5px;}
+  .edu-card .note{color:var(--text-faint); font-size:12.5px; margin-top:4px;}
+  .edu-card .date{font-size:12.5px; font-weight:700; color:var(--accent-2); white-space:nowrap;}
+
+  /* ---------- Publications / cards ---------- */
+  .pub-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:18px 20px; box-shadow:var(--shadow); margin-bottom:14px; font-size:14.5px;
+  }
+  .pub-card .tag{
+    display:inline-block; font-size:11px; font-weight:700; letter-spacing:.5px; text-transform:uppercase;
+    color:var(--accent-2); background:var(--accent-soft); padding:3px 9px; border-radius:6px; margin-bottom:10px;
+  }
+  .pub-card .authors{color:var(--text-soft); font-size:13px; margin-top:6px;}
+
+  /* ---------- Two-col grid (NGO / Hobbies) ---------- */
+  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:700px){.grid-2{grid-template-columns:1fr;}}
+  .role-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:18px 20px; box-shadow:var(--shadow);
+  }
+  .role-card h3{margin:0 0 2px; font-size:15px; font-weight:700;}
+  .role-card .date{font-size:12px; color:var(--accent-2); font-weight:700;}
+  .role-card .place{color:var(--text-faint); font-size:12.5px; margin-bottom:8px;}
+  .role-card ul{margin:0; padding-left:18px; font-size:13.5px; color:var(--text-soft);}
+  .role-card li{margin-bottom:5px;}
+
+  .hobby-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:18px 20px; box-shadow:var(--shadow); font-size:14px; color:var(--text-soft);
+  }
+  .hobby-card h3{margin:0 0 6px; font-size:14.5px; font-weight:700; color:var(--text);}
+
+  /* ---------- Footer ---------- */
+  footer{padding:40px 0 60px; text-align:center; color:var(--text-faint); font-size:13px;}
+  footer a{color:var(--text-faint);}
+
+  /* ---------- Reveal animation ---------- */
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media print{
+    .topnav, .theme-toggle{display:none;}
+    body{background:#fff;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="brand">Dr. Adem Şimşek</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#publications">Publications</a>
+      <a href="#community">Community</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <a class="cv-btn" href="Adem_Simsek_CV.pdf" download>Download CV</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="avatar-ring">AŞ</div>
+  <h1>Dr. Adem Şimşek</h1>
+  <p class="role">Assistant Professor <span>·</span> Information Security Consultant <span>·</span> Founder, ITSAFE</p>
+  <div class="contact-row">
+    <span class="pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      Istanbul, Türkiye
+    </span>
+    <span class="pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 6-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+      <a href="mailto:ademsim@gmail.com">ademsim@gmail.com</a>
+    </span>
+    <span class="pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5Zm4 2v5c3 3 9 3 12 0v-5"/></svg>
+      <a href="https://akademik.yok.gov.tr/AkademikArama/view/viewAuthor.jsp" target="_blank" rel="noopener">YÖK Akademik</a>
+    </span>
+    <span class="pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6.5A4.5 4.5 0 1 0 16.5 11M12 6.5A4.5 4.5 0 1 1 7.5 11M12 6.5V4m0 14v-3.5"/></svg>
+      <a href="https://scholar.google.com/citations?hl=tr&user=R62UEQYAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+    </span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="about" class="reveal">
+    <div class="section-head"><span class="num">01</span><h2>About Myself</h2></div>
+    <p class="lead">
+      I was born in 1979 in Istanbul, Türkiye. I completed my high school education in a technical high school
+      specializing in computer technologies. For my undergraduate studies, I pursued a degree in Computer
+      Engineering in Cyprus and graduated with honors. I then obtained my master's degree in Information and
+      Communication Systems Security from KTH Royal Institute of Technology in Stockholm, Sweden. Upon
+      returning to Türkiye, I worked for three years as an Information Security Consultant at Uyumsoft, one of
+      the country's largest software companies. During this period, I also completed my Ph.D. at Yaşar
+      University in İzmir, focusing on the detection of advanced persistent threats. In 2013, I co-founded
+      ITSAFE, a consultancy firm providing services in information security, international compliance, and IT
+      standards. Since 2020, I have been teaching information security courses at Istanbul Aydın University and
+      Belek University in Antalya.
+    </p>
+    <p class="lead">
+      Academically, I deliver undergraduate and graduate-level courses on Cryptography, Software Security, AI
+      Security, Network Security, and Introduction to Information Security. In addition to my academic and
+      professional work, I actively participate in various NGOs in leadership and mentorship roles, particularly
+      in the area of social responsibility. I also take part in both national and international projects, and
+      continue to share my knowledge with younger generations by teaching coding and robotics. As a hobby, I am
+      involved in initiatives related to both traditional and hydroponic agriculture. Professionally, I am open
+      to national and international collaborations in the areas of cybersecurity, advanced threat analysis, and
+      global compliance frameworks.
+    </p>
+  </section>
+
+  <section id="experience" class="reveal">
+    <div class="section-head"><span class="num">02</span><h2>Work Experience</h2></div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <span class="tl-dot"></span>
+        <div class="job-head">
+          <span class="job-org">Antalya Belek University</span>
+          <span class="job-date">2020 – Current</span>
+        </div>
+        <div class="job-role">Assistant Professor</div>
+        <div class="job-meta">Antalya, Turkey · <a href="https://belek.edu.tr" target="_blank" rel="noopener">belek.edu.tr</a> · Sector: Education</div>
+        <div class="job-body">
+          <ul>
+            <li>Courses taught: Introduction to Information Security, Cryptography, Network Security, Software Security, Artificial Intelligence (AI) Security.</li>
+            <li>Lab: Penetration Testing and Vulnerability Assessment.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <span class="tl-dot"></span>
+        <div class="job-head">
+          <span class="job-org">Itsafe Technology Ltd</span>
+          <span class="job-date">2013 – Current</span>
+        </div>
+        <div class="job-role">Founder / Manager</div>
+        <div class="job-meta">Istanbul, Turkey · <a href="https://itsafe.com.tr" target="_blank" rel="noopener">itsafe.com.tr</a> · Sector: Consultancy</div>
+        <div class="job-body">
+          As a co-founder and senior consultant at ITSAFE, I have led and contributed to various projects in the
+          field of information security, focusing on both compliance and technical aspects. My responsibilities
+          and achievements include:
+          <ul>
+            <li><strong>Information Security Management Systems (ISMS):</strong> Implemented and audited ISMS frameworks based on ISO/IEC 27001 standards, enhancing organizational security postures.</li>
+            <li><strong>Data Protection and Privacy Compliance:</strong> Conducted assessments and provided consultancy for compliance with data protection regulations, including the Turkish Personal Data Protection Law (KVKK/GDPR) and ISO/IEC 27701.</li>
+            <li><strong>Penetration Testing and Vulnerability Assessments:</strong> Performed comprehensive security testing, including external/internal network assessments, web application testing, wireless security evaluations, social engineering simulations, and DoS/DDoS resilience testing.</li>
+            <li><strong>Open Source Security Solutions:</strong> Deployed and managed open-source security tools such as pfSense for firewall solutions, Zimbra for secure email communications, ELK Stack for log management, OSSEC for host-based intrusion detection, and Wazuh for SIEM capabilities.</li>
+            <li><strong>Business Continuity and IT Service Management:</strong> Advised organizations on establishing and maintaining business continuity plans in line with ISO 22301 and improving IT service management processes according to ISO/IEC 20000 standards.</li>
+            <li><strong>Software Process Improvement:</strong> Guided software development teams in enhancing their processes through frameworks like ISO/IEC 15504 (SPICE), ISO/IEC 33002, and CMMI, aiming for higher maturity levels and process optimization.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <span class="tl-dot"></span>
+        <div class="job-head">
+          <span class="job-org">İstanbul Aydın University</span>
+          <span class="job-date">2020 – 2021</span>
+        </div>
+        <div class="job-role">Assistant Professor</div>
+        <div class="job-meta">İstanbul, Turkey · <a href="https://aydin.edu.tr" target="_blank" rel="noopener">aydin.edu.tr</a> · Sector: Education</div>
+        <div class="job-body">
+          <ul><li>Course taught: Introduction to Information Security.</li></ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <span class="tl-dot"></span>
+        <div class="job-head">
+          <span class="job-org">Uyumsoft Bilgi Sistemleri A.Ş.</span>
+          <span class="job-date">2010 – 2013</span>
+        </div>
+        <div class="job-role">Information Security Consultant</div>
+        <div class="job-meta">Istanbul, Turkey · <a href="https://uyumsoft.com" target="_blank" rel="noopener">uyumsoft.com</a> · Sector: Software</div>
+        <div class="job-body">
+          At Uyumsoft, I served as an Information Security Consultant, actively participating in several
+          enterprise-level projects. My key responsibilities and achievements included:
+          <ul>
+            <li>Establishment, implementation, and management of the ISO/IEC 27001 Information Security Management System (ISMS) within various organizations.</li>
+            <li>Deployment and administration of ISO 22301 Business Continuity Management System and ISO/IEC 20000 IT Service Management System.</li>
+            <li>Conducting software penetration tests to identify and mitigate system vulnerabilities.</li>
+            <li>Integration of 20 critical security controls into corporate IT infrastructures to enhance overall cybersecurity resilience.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <span class="tl-dot"></span>
+        <div class="job-head">
+          <span class="job-org">Burulaş Bursaray A.Ş.</span>
+          <span class="job-date">2005 – 2007</span>
+        </div>
+        <div class="job-role">Audit Project</div>
+        <div class="job-meta">Bursa, Turkey · <a href="https://burulas.com.tr" target="_blank" rel="noopener">burulas.com.tr</a> · Sector: Transportation</div>
+        <div class="job-body">
+          <ul><li>Conducted a security assessment of the electronic card system used in the urban transportation infrastructure, focusing on its design and electronics-based security vulnerabilities. The findings were documented in a formal audit report. This project was a joint collaboration between Bursa Uludağ University and Burulaş Bursaray A.Ş.</li></ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="education" class="reveal">
+    <div class="section-head"><span class="num">03</span><h2>Education</h2></div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div>
+          <h3>Ph.D. in Computer Engineering, Cybersecurity Program</h3>
+          <div class="school">Yaşar University – İzmir, Turkey</div>
+          <div class="note">Dissertation: Detection of Advanced Persistent Threats (APT)</div>
+        </div>
+        <div class="date">2013 – 2018</div>
+      </div>
+      <div class="edu-card">
+        <div>
+          <h3>M.Sc. in Information and Communication Systems Security</h3>
+          <div class="school">KTH Royal Institute of Technology / Stockholm University – Stockholm, Sweden</div>
+        </div>
+        <div class="date">2007 – 2010</div>
+      </div>
+      <div class="edu-card">
+        <div>
+          <h3>M.A. in Business Administration</h3>
+          <div class="school">Sakarya University – Sakarya, Türkiye</div>
+        </div>
+        <div class="date">2005 – 2007</div>
+      </div>
+      <div class="edu-card">
+        <div>
+          <h3>B.Sc. in Computer Engineering (English Program)</h3>
+          <div class="school">International Cyprus University – Nicosia, Cyprus</div>
+          <div class="note">Full Scholarship, 1-Year English Preparatory Program</div>
+        </div>
+        <div class="date">2000 – 2005</div>
+      </div>
+      <div class="edu-card">
+        <div>
+          <h3>High School Diploma, Computer Technology Department</h3>
+          <div class="school">Yakacık Technical High School – Istanbul, Türkiye</div>
+        </div>
+        <div class="date">1994 – 1998</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications" class="reveal">
+    <div class="section-head"><span class="num">04</span><h2>Publications &amp; Presentations</h2></div>
+
+    <div class="pub-card">
+      <span class="tag">Journal Article</span>
+      <div>“Detection of Advanced Persistent Threats Using SIEM Rulesets.” International Journal of 3D Printing Technologies and Digital Industry, Vol. 7, Issue 3, pp. 471–477 (2023).<br>
+      <a href="https://doi.org/10.46519/ij3dptdi.1353341" target="_blank" rel="noopener">doi.org/10.46519/ij3dptdi.1353341</a></div>
+      <div class="authors">Şimşek, A., Koltuksuz, A.</div>
+    </div>
+
+    <div class="pub-card">
+      <span class="tag">Conference Abstract</span>
+      <div>“Technological Genocide and Cyber Warfare: An Examination of Advanced Persistent Threats (APT) Originating from Unit 8200.” Accepted as an abstract for presentation at the 2nd International Symposium on Academia and Zionism, Mardin Artuklu University, Türkiye, 17–18.04.2025.<br>
+      <a href="https://www.artuklu.edu.tr/tr/duyurular/ii-uluslararasi-akademi-ve-siyonizm-sempozyumu" target="_blank" rel="noopener">Symposium announcement</a></div>
+      <div class="authors">Şimşek, A. (2025)</div>
+    </div>
+  </section>
+
+  <section id="community" class="reveal">
+    <div class="section-head"><span class="num">05</span><h2>NGO Projects &amp; Voluntary Roles</h2></div>
+    <div class="grid-2">
+      <div class="role-card">
+        <h3>President, Başıbüyük Education, Culture &amp; Arts Association</h3>
+        <div class="date">2023 – Present</div>
+        <div class="place">Istanbul, Türkiye</div>
+        <ul>
+          <li>Oversee cultural, educational, and artistic community programs, coordinating volunteers and developing project curricula.</li>
+          <li>Provide ongoing Robotics &amp; Coding instruction, mentoring students in hands-on technology projects and fostering digital literacy.</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <h3>President, Green Crescent Society – Maltepe Branch</h3>
+        <div class="date">2023</div>
+        <div class="place">Istanbul, Türkiye</div>
+        <ul>
+          <li>Led addiction-awareness and prevention initiatives, organizing community events and seminars.</li>
+          <li>Designed and delivered Robotics &amp; Coding workshops for youth to foster STEM skills and healthy alternatives to substance use.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="hobbies" class="reveal">
+    <div class="section-head"><span class="num">06</span><h2>Hobby Activities</h2></div>
+    <div class="grid-2">
+      <div class="hobby-card">
+        <h3>🌾 Heritage Grain Cultivation</h3>
+        Contributing to the preservation and production of 7,000-year-old “Kavılca” wheat using traditional farming methods, supporting agro-cultural heritage initiatives.
+      </div>
+      <div class="hobby-card">
+        <h3>💧 Hydroponic Farming Field Training</h3>
+        Delivering hands-on hydroponic (soilless) agriculture workshops and field experience for national agricultural programs, Erasmus exchanges, and young entrepreneur cohorts.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Dr. Adem Şimşek · Istanbul, Türkiye · <a href="mailto:ademsim@gmail.com">ademsim@gmail.com</a></p>
+  <p>© <span id="year"></span> — Built with care.</p>
+</footer>
+
+<script>
+  // Theme toggle
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const stored = localStorage.getItem('theme');
+  if(stored){ root.setAttribute('data-theme', stored); themeToggle.textContent = stored === 'dark' ? '☀️' : '🌙'; }
+  themeToggle.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
+  });
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
 </html>
